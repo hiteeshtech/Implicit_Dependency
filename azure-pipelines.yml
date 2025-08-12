@@ -1,0 +1,32 @@
+trigger:
+- main
+
+pool:
+  name : Hitesh_Pool
+
+steps:
+  - 
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'YAML Service Connection'
+    backendAzureRmStorageAccountName: 'punitstg'
+    backendAzureRmContainerName: 'punitcontainer'
+    backendAzureRmKey: 'terraform.tfvars'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'YAML Service Connection'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    environmentServiceNameAzureRM: 'YAML Service Connection'
