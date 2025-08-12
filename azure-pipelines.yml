@@ -7,10 +7,12 @@ pool:
 steps:
 
 - task: TerraformInstaller@1
+  displayName: 'terraform install'
   inputs:
     terraformVersion: 'latest'
 
 - task: TerraformTask@5
+  displayName: 'terraform init'
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -20,12 +22,14 @@ steps:
     backendAzureRmKey: 'terraform.tfstate'
 
 - task: TerraformTask@5
+  displayName: 'terraform plan'
   inputs:
     provider: 'azurerm'
     command: 'plan'
     environmentServiceNameAzureRM: 'YAML Service Connection'
 
 - task: TerraformTask@5
+  displayName: 'terraform apply'
   inputs:
     provider: 'azurerm'
     command: 'apply'
