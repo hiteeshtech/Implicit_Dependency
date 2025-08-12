@@ -2,10 +2,10 @@ trigger:
 - main
 
 pool:
-  name : Hitesh_Pool
+  name: Hitesh_Pool
 
 steps:
-  - 
+
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
@@ -17,7 +17,7 @@ steps:
     backendServiceArm: 'YAML Service Connection'
     backendAzureRmStorageAccountName: 'punitstg'
     backendAzureRmContainerName: 'punitcontainer'
-    backendAzureRmKey: 'terraform.tfvars'
+    backendAzureRmKey: 'terraform.tfstate'
 
 - task: TerraformTask@5
   inputs:
